@@ -22,7 +22,7 @@ def run_RandomSudoku():
     pelilauta = [ [numerot[pattern(r,c)] for c in sarake] for r in rivit ]
 
     neliöt = sivu*sivu
-    tyhjä = neliöt * 3//5        # vaikeustaso
+    tyhjä = neliöt * 2//5        # vaikeustaso
 
     for p in sample(range(neliöt),tyhjä):
         pelilauta[p//sivu][p%sivu] = 0

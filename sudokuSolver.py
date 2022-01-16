@@ -126,7 +126,7 @@ def run_SudokuSolver(Sudoku):
                         new_state[i][j] = value
                         ratkaistu = solve(new_state)
                         if ratkaistu is not None:
-                            return ratkaustu
+                            return ratkaistu
                     return None
 
     print_field(solve(state))

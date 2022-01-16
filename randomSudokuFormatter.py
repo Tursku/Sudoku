@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 def run_RandomFormatter(Sudoku):
     rivi1 = ""
     rivi2 = ""

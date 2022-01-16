@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import sys
 from copy import deepcopy
 
@@ -50,29 +51,29 @@ def run_SudokuSolver(Sudoku):
         # vaakarivien sääntö
         for i in range(9):
             rivi = state[i]
-            values = set([x for x in rivi if not isinstance(x, set)])
+            arvot = set([x for x in rivi if not isinstance(x, set)])
             for j in range(9):
                 if isinstance(state[i][j], set):
-                    state[i][j] -= values
+                    state[i][j] -= arvot
                     if len(state[i][j]) == 1:
                         val = state[i][j].pop()
                         state[i][j] = val
-                        values.add(val)
+                        arvot.add(val)
                         uudetLuvut = True
                     elif len(state[i][j]) == 0:
                         return False, None
 
         # pystyrivien sääntö
         for j in range(9):
-            column = [state[x][j] for x in range(9)]
-            values = set([x for x in column if not isinstance(x, set)])
+            sarake = [state[x][j] for x in range(9)]
+            arvot = set([x for x in sarake if not isinstance(x, set)])
             for i in range(9):
                 if isinstance(state[i][j], set):
-                    state[i][j] -= values
+                    state[i][j] -= arvot
                     if len(state[i][j]) == 1:
                         val = state[i][j].pop()
                         state[i][j] = val
-                        values.add(val)
+                        arvot.add(val)
                         uudetLuvut = True
                     elif len(state[i][j]) == 0:
                         return False, None
@@ -80,20 +81,20 @@ def run_SudokuSolver(Sudoku):
         # 3x3 neliön sääntö
         for x in range(3):
             for y in range(3):
-                values = set()
+                arvot = set()
                 for i in range(3 * x, 3 * x + 3):
                     for j in range(3 * y, 3 * y + 3):
                         solu = state[i][j]
                         if not isinstance(solu, set):
-                            values.add(solu)
+                            arvot.add(solu)
                 for i in range(3 * x, 3 * x + 3):
                     for j in range(3 * y, 3 * y + 3):
                         if isinstance(state[i][j], set):
-                            state[i][j] -= values
+                            state[i][j] -= arvot
                             if len(state[i][j]) == 1:
                                 val = state[i][j].pop()
                                 state[i][j] = val
-                                values.add(val)
+                                arvot.add(val)
                                 uudetLuvut = True
                             elif len(state[i][j]) == 0:
                                 return False, None

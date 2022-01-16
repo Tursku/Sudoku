@@ -1,43 +1,44 @@
+# -*- coding: utf-8 -*-
 def run_RandomSudoku():
 
     from random import sample
 
-    base  = 3
-    side  = base*base
+    pohja  = 3
+    sivu  = pohja*pohja
 
     def pattern(r,c): 
-        return (base*(r%base)+r//base+c)%side
+        return (pohja*(r%pohja)+r//pohja+c)%sivu
 
 
     def shuffle(s): 
         return sample(s,len(s))
 
-    rBase = range(base) 
+    rangePohja = range(pohja) 
 
-    rows = [ g*base + r for g in shuffle(rBase) for r in shuffle(rBase) ] 
-    cols = [ g*base + c for g in shuffle(rBase) for c in shuffle(rBase) ]
+    rivit = [ g*pohja + r for g in shuffle(rangePohja) for r in shuffle(rangePohja) ] 
+    sarake = [ g*pohja+ c for g in shuffle(rangePohja) for c in shuffle(rangePohja) ]
 
-    nums = shuffle(range(1,base*base+1))
-    board = [ [nums[pattern(r,c)] for c in cols] for r in rows ]
+    numerot = shuffle(range(1,pohja*pohja+1))
+    pelilauta = [ [numerot[pattern(r,c)] for c in sarake] for r in rivit ]
 
-    squares = side*side
-    empties = squares * 3//5        # vaikeustaso
+    neliöt = sivu*sivu
+    tyhjä = neliöt * 3//5        # vaikeustaso
 
-    for p in sample(range(squares),empties):
-        board[p//side][p%side] = 0
+    for p in sample(range(neliöt),tyhjä):
+        pelilauta[p//sivu][p%sivu] = 0
 
-    numSize = len(str(side))
-    open('Sudoku/Sudoku.txt', 'w').close() # Empties the file
+    numero = len(str(sivu))
+    open('Sudoku.txt', 'w').close() # Empties the file
     y = 0
-    for line in board: 
+    for line in pelilauta: 
         y += 1
 
         if y == 9:  # Ei printtaa rivivaihtoa viimiseen
-            completedSudoku = ("["+",".join(f"{n or '0':{numSize}}" for n in line)+"]")
-            file = open("Sudoku/Sudoku.txt","a")
-            file.write(completedSudoku)
+            valmisSudoku = ("["+",".join(f"{n or '0':{numero}}" for n in line)+"]")
+            file = open("Sudoku.txt","a")
+            file.write(valmisSudoku)
 
         else:
-            completedSudoku = ("["+",".join(f"{n or '0':{numSize}}" for n in line)+"]")
-            file = open("Sudoku/Sudoku.txt","a")
-            file.write(completedSudoku + '\n')
+            valmisSudoku = ("["+",".join(f"{n or '0':{numero}}" for n in line)+"]")
+            file = open("Sudoku.txt","a")
+            file.write(valmisSudoku + '\n')

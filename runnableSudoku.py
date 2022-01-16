@@ -1,11 +1,14 @@
+# -*- coding: utf-8 -*-
 from randomSudoku import run_RandomSudoku
 from sudokuSolver import run_SudokuSolver
 from randomSudokuFormatter import run_RandomFormatter
 
 lista = []
+
 run_RandomSudoku()
+
 print("\n Random sudoku : \n")
-f = open("Sudoku/Sudoku.txt", "r")
+f = open("Sudoku.txt", "r")
 Sudoku = f.read()
 
 for x in Sudoku:

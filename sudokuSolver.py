@@ -124,9 +124,9 @@ def run_SudokuSolver(Sudoku):
                     for value in solu:
                         new_state = deepcopy(state)
                         new_state[i][j] = value
-                        solved = solve(new_state)
-                        if solved is not None:
-                            return solved
+                        ratkaistu = solve(new_state)
+                        if ratkaistu is not None:
+                            return ratkaustu
                     return None
 
     print_field(solve(state))
